@@ -1,6 +1,6 @@
 
 /**
- * Write a description of class NumberDisplay here.
+ * The class have a number of two digits.
  * 
  * @author (your name) 
  * @version (a version number or a date)
@@ -8,26 +8,59 @@
 public class NumberDisplay
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private int number;
+    private int limit;
 
     /**
-     * Constructor for objects of class NumberDisplay
+     * Constructor for objects of class NumberDisplay with a maxime valor.
      */
-    public NumberDisplay()
+    public NumberDisplay( int max)
     {
-        // initialise instance variables
-        x = 0;
+        // valor original de number
+        number = 0;
+        limit = max;
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * A method for grow up the number.
      */
-    public int sampleMethod(int y)
+    public void increment()
     {
-        // put your code here
-        return x + y;
+        // grow up the number
+        number++;
+        if(number == limit){
+            number = 0;
+        }
+    }
+    /**
+     * Give a new Value for the number,
+     * If the value is negative the method give him 0,
+     * If the value is more to limit, the value is the rest of value/limit.
+     */
+    public void setValue(int giveMe){
+        number = giveMe;
+        if(giveMe >= limit){
+            number = giveMe % limit;
+        }
+        else if(giveMe<0){
+            number = 0;
+        }
+    }
+    /**
+     * Return a chain of 2 character.
+     */
+    public String getDisplayValue(){
+        String value = Integer.toString(number);
+        if(number < 10){
+            value = "0" + value;
+        }
+        return value;
+    }
+    /**
+     * Return a number.
+     */
+    public int getValue(){
+        int value = number;
+        return value;
     }
 }

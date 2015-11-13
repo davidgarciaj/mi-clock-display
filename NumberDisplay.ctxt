@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=max
+comment0.target=NumberDisplay(int)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ NumberDisplay\ with\ a\ maxime\ valor.\r\n
+comment1.params=
+comment1.target=void\ increment()
+comment1.text=\r\n\ A\ method\ for\ grow\ up\ the\ number.\r\n
+comment2.params=giveMe
+comment2.target=void\ setValue(int)
+comment2.text=\r\n\ Give\ a\ new\ Value\ for\ the\ number,\r\n\ If\ the\ value\ is\ negative\ the\ method\ give\ him\ 0,\r\n\ If\ the\ value\ is\ more\ to\ limit,\ the\ value\ is\ the\ rest\ of\ value/limit.\r\n
+comment3.params=
+comment3.target=java.lang.String\ getDisplayValue()
+comment3.text=\r\n\ Return\ a\ chain\ of\ 2\ character.\r\n
+comment4.params=
+comment4.target=int\ getValue()
+comment4.text=\r\n\ Return\ a\ number.\r\n
+numComments=5
