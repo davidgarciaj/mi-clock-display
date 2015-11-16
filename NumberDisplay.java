@@ -41,7 +41,7 @@ public class NumberDisplay
     public void setValue(int giveMe){
         number = giveMe;
         if(giveMe >= limit){
-            number = giveMe % limit;
+            number = limit - 1;
         }
         else if(giveMe<0){
             number = 0;

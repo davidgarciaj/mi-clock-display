@@ -20,11 +20,11 @@ public class ClockDisplay
     public ClockDisplay()
     {
         // minutos actuales
-        minute.setValue(0) ;
+        minute = new NumberDisplay(60);
         // hora actual
-        hour.setValue(0);
+        hour = new NumberDisplay(24);
         //Tiempo representado
-        time= hour + ":" + minute;
+        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
     }
     
     /**
@@ -32,12 +32,30 @@ public class ClockDisplay
      */
     public ClockDisplay(int hora , int minuto)
     {
-        // minutos actuales
+      // minutos actuales
+        minute = new NumberDisplay(60);
         minute.setValue(minuto);
         // hora actual
+        hour = new NumberDisplay(24);
         hour.setValue(hora);
         //Tiempo representado
-        time= hour + ":" + minute;
+        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
     }
 
+    /**
+     * Fija la hora que desees introducir
+     */
+    public void setTime(int hora,int minuto)
+   {
+        if((hora >= 0) && (hora < 24))
+       {
+           hour.setValue(hora);
+       }
+        if((minuto >= 0) && (minuto < 60))
+       {
+            
+           minute.setValue(minuto);
+       }
+       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+   }
 }
