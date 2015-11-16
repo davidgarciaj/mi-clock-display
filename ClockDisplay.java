@@ -69,5 +69,6 @@ public class ClockDisplay
        if(minute.getValue() == 0){
            hour.increment();
        }
+       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
    }
 }
