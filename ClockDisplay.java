@@ -58,4 +58,12 @@ public class ClockDisplay
        }
        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
    }
+   /**
+    * Devuelve la hora en una cadena
+    */
+   public String getTime()
+   {
+       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+       return time;
+   }
 }
