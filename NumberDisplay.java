@@ -2,8 +2,8 @@
 /**
  * The class have a number of two digits.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (David Garcia) 
+ * @version (1)
  */
 public class NumberDisplay
 {
@@ -16,8 +16,9 @@ public class NumberDisplay
      */
     public NumberDisplay( int max)
     {
-        // valor original de number
+        // valor original de number.
         number = 0;
+        //valor del limite maximo.
         limit = max;
     }
 
@@ -60,7 +61,6 @@ public class NumberDisplay
      * Return a number.
      */
     public int getValue(){
-        int value = number;
-        return value;
+        return number;
     }
 }
