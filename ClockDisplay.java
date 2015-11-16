@@ -47,17 +47,11 @@ public class ClockDisplay
      */
     public void setTime(int hora,int minuto)
    {
-        if((hora >= 0) && (hora < 24))
-       {
-           hour.setValue(hora);
-       }
-        if((minuto >= 0) && (minuto < 60))
-       {
-            
-           minute.setValue(minuto);
-       }
-       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        hour.setValue(hora);
+        minute.setValue(minuto);
+        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
    }
+   
    /**
     * Devuelve la hora en una cadena
     */
@@ -65,5 +59,15 @@ public class ClockDisplay
    {
        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
        return time;
+   }
+   
+   /**
+    * Aumenta un minuto el tiempo
+    */
+   public void timeTick(){
+       minute.increment();
+       if(minute.getValue() == 0){
+           hour.increment();
+       }
    }
 }
