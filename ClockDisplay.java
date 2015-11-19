@@ -28,7 +28,7 @@ public class ClockDisplay
     }
     
     /**
-     * Constructor for objects of class ClockDisplay with a user gift the initial hour
+     * Constructor de objetos de la clase ClockDisplay, el usuario da la hora
      */
     public ClockDisplay(int hora , int minuto)
     {
@@ -57,8 +57,28 @@ public class ClockDisplay
     */
    public String getTime()
    {
-       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
-       return time;
+       String meridium = " AM";
+       String hora = hour.getDisplayValue();
+       if(hour.getValue() > 11){
+           if(hour.getValue() > 12){
+               hora = (hour.getValue() - 12) + "";
+           }
+           meridium  = " PM";
+       }
+       if((hour.getValue() == 12) && (minute.getValue() == 0)){
+           meridium = " M";
+       }
+       if(hour.getValue() == 0){
+           hora = "12";
+       }
+       if((hour.getValue() > 0) && (hour.getValue() < 10)){
+            hora  = "0" + hora;  
+       }
+       else if((hour.getValue() > 12) && (hour.getValue() < 22)){
+           hora  = "0" + hora; 
+       }
+       String tiempo = hora + ":" + minute.getDisplayValue() + meridium;
+       return tiempo;
    }
    
    /**
