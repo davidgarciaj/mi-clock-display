@@ -13,24 +13,29 @@ public class ClockDisplay
     private NumberDisplay hour;
     //La hora que tiene el reloj en cadena de caracteres
     private String time;
+    //Permite elegir formato de 12 o 24 horas
+    private boolean doceHoras;
 
     /**
-     * Constructor for objects of class ClockDisplay with initial hour is 00:00
+     * Constructor for objects of class ClockDisplay with initial hour is 00:00 or 12:00 in 12 hours format.
+     * Elige si quieres el formato horario de 12 horas. 
      */
-    public ClockDisplay()
+    public ClockDisplay(boolean formato)
     {
         // minutos actuales
         minute = new NumberDisplay(60);
         // hora actual
         hour = new NumberDisplay(24);
         //Tiempo representado
-        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        //Formato de horas
+        doceHoras = formato;
     }
     
     /**
      * Constructor de objetos de la clase ClockDisplay, el usuario da la hora
      */
-    public ClockDisplay(int hora , int minuto)
+    public ClockDisplay(int hora , int minuto, boolean formato)
     {
       // minutos actuales
         minute = new NumberDisplay(60);
@@ -40,6 +45,8 @@ public class ClockDisplay
         hour.setValue(hora);
         //Tiempo representado
         time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        //Formato de horas
+        doceHoras = formato;
     }
 
     /**
@@ -57,28 +64,40 @@ public class ClockDisplay
     */
    public String getTime()
    {
-       String meridium = " AM";
-       String hora = hour.getDisplayValue();
-       if(hour.getValue() > 11){
-           if(hour.getValue() > 12){
-               hora = (hour.getValue() - 12) + "";
+       if(doceHoras){
+           String meridium = " AM";
+           String hora = hour.getDisplayValue();
+           if(hour.getValue() > 11){
+               if(hour.getValue() > 12){
+                   hora = (hour.getValue() - 12) + "";
+                }
+                meridium  = " PM";
            }
-           meridium  = " PM";
-       }
-       if((hour.getValue() == 12) && (minute.getValue() == 0)){
-           meridium = " M";
-       }
-       if(hour.getValue() == 0){
-           hora = "12";
-       }
-       if((hour.getValue() > 0) && (hour.getValue() < 10)){
-            hora  = "0" + hora;  
-       }
-       else if((hour.getValue() > 12) && (hour.getValue() < 22)){
-           hora  = "0" + hora; 
-       }
-       String tiempo = hora + ":" + minute.getDisplayValue() + meridium;
-       return tiempo;
+           if((hour.getValue() == 12) && (minute.getValue() == 0)){
+               meridium = " M";
+           }
+           if(hour.getValue() == 0){
+               hora = "12";
+           }
+           if((hour.getValue() > 0) && (hour.getValue() < 10)){
+                hora  = "0" + hora;  
+           }
+           else if((hour.getValue() > 12) && (hour.getValue() < 22)){
+               hora  = "0" + hora; 
+           }
+           String tiempo = hora + ":" + minute.getDisplayValue() + meridium;
+           return tiempo;
+        }
+        else{
+            return time;
+        }
+   }
+   
+   /**
+    * Cambia el formato horario del relos
+    */
+   public void formatChange(){
+       doceHoras  = !doceHoras;
    }
    
    /**
