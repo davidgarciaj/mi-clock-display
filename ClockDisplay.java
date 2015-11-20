@@ -27,7 +27,7 @@ public class ClockDisplay
         // hora actual
         hour = new NumberDisplay(24);
         //Tiempo representado
-        time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        asignaTime();
         //Formato de horas
         doceHoras = formato;
     }
@@ -44,7 +44,7 @@ public class ClockDisplay
         hour = new NumberDisplay(24);
         hour.setValue(hora);
         //Tiempo representado
-        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        asignaTime();
         //Formato de horas
         doceHoras = formato;
     }
@@ -56,7 +56,7 @@ public class ClockDisplay
    {
         hour.setValue(hora);
         minute.setValue(minuto);
-        time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+        asignaTime();
    }
    
    /**
@@ -64,12 +64,7 @@ public class ClockDisplay
     */
    public String getTime()
    {
-       if(doceHoras){
-         formatoDoce();  
-       }
-       else{
-           time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
-       }
+       asignaTime();
        return time;
         
    }
@@ -99,13 +94,20 @@ public class ClockDisplay
            }
            time = hora + ":" + minute.getDisplayValue() + meridium;
    }
+   
    /**
     * Cambia el formato horario del relos
     */
    public void formatChange(){
        doceHoras  = !doceHoras;
+       asignaTime();
+   }
+   /**
+    * Asigna el valor de la hora
+    */
+   public void asignaTime(){
        if(doceHoras){
-         formatoDoce();  
+           formatoDoce();  
        }
        else{
            time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
@@ -120,6 +122,6 @@ public class ClockDisplay
        if(minute.getValue() == 0){
            hour.increment();
        }
-       time= hour.getDisplayValue() + ":" + minute.getDisplayValue();
+       asignaTime();
    }
 }
