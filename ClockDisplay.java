@@ -15,6 +15,12 @@ public class ClockDisplay
     private String time;
     //Permite elegir formato de 12 o 24 horas
     private boolean doceHoras;
+    //Asigna el dia actual
+    private NumberDisplay dia;
+    //Asigna el mes actual
+    private NumberDisplay mes;
+    //Asigna el año actual
+    private NumberDisplay year;
 
     /**
      * Constructor for objects of class ClockDisplay with initial hour is 00:00 or 12:00 in 12 hours format.
@@ -26,16 +32,26 @@ public class ClockDisplay
         minute = new NumberDisplay(60);
         // hora actual
         hour = new NumberDisplay(24);
+        //Formato de horas, true es formato 12 horas
+        doceHoras = formato;
+        //Dia actual
+        dia = new NumberDisplay(30);
+        dia.setValue(20);
+        //Mes actual
+        mes = new NumberDisplay(12);
+        mes.setValue(11);
+        //Año actual
+        year = new NumberDisplay(99);
+        year.setValue(15);
         //Tiempo representado
         asignaTime();
-        //Formato de horas
-        doceHoras = formato;
     }
     
     /**
      * Constructor de objetos de la clase ClockDisplay, el usuario da la hora
+     * * Elige si quieres el formato horario de 12 horas
      */
-    public ClockDisplay(int hora , int minuto, boolean formato)
+    public ClockDisplay(int hora , int minuto, boolean formato, int diaDado, int mesDado, int anioDado)
     {
       // minutos actuales
         minute = new NumberDisplay(60);
@@ -47,15 +63,33 @@ public class ClockDisplay
         asignaTime();
         //Formato de horas
         doceHoras = formato;
+        //Dia actual
+        dia = new NumberDisplay(30);
+        dia.setValue(diaDado);
+        //Mes actual
+        mes = new NumberDisplay(12);
+        mes.setValue(mesDado);
+        //Año actual
+        year = new NumberDisplay(99);
+        year.setValue(anioDado);
     }
 
     /**
-     * Fija la hora que desees introducir
+     * Fija la hora que desees introducir,tambien debes fijar el dia, mes y año.
      */
-    public void setTime(int hora,int minuto)
+    public void setTime(int hora,int minuto, int diaDado, int mesDado, int anioDado)
    {
+        //Hora actual
         hour.setValue(hora);
+        //Minuto actual
         minute.setValue(minuto);
+        //Dia actual
+        dia.setValue(diaDado - 1);
+        //Mes actual
+        dia.setValue(mesDado - 1);
+        //Año actual
+        dia.setValue(anioDado - 1);
+        //Guarda fecha
         asignaTime();
    }
    
@@ -68,10 +102,19 @@ public class ClockDisplay
        return time;
         
    }
+   
    /**
-    * Transforma el formato de 24 horas a 12 horas.
+    * Cambia el formato horario del relos
     */
-   public void formatoDoce(){
+   public void formatChange(){
+       doceHoras  = !doceHoras;
+       asignaTime();
+   }
+   /**
+    * Asigna el valor de la hora
+    */
+   public void asignaTime(){
+       if(doceHoras){
            String meridium = " AM";
            String hora = hour.getDisplayValue();
            if(hour.getValue() > 11){
@@ -92,25 +135,10 @@ public class ClockDisplay
            else if((hour.getValue() > 12) && (hour.getValue() < 22)){
                hora  = "0" + hora; 
            }
-           time = hora + ":" + minute.getDisplayValue() + meridium;
-   }
-   
-   /**
-    * Cambia el formato horario del relos
-    */
-   public void formatChange(){
-       doceHoras  = !doceHoras;
-       asignaTime();
-   }
-   /**
-    * Asigna el valor de la hora
-    */
-   public void asignaTime(){
-       if(doceHoras){
-           formatoDoce();  
-       }
+           time = hora + ":" + minute.getDisplayValue() + meridium + " " + (dia.getValue() + 1) + "-" + (mes.getValue()+ 1) + "-" + (year.getValue() + 1); 
+        }
        else{
-           time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
+           time = hour.getDisplayValue() + ":" + minute.getDisplayValue() + " " + (dia.getValue()+ 1) + "-" + (mes.getValue()+ 1) + "-" + (year.getValue() + 1);
        }
    }
    
@@ -121,6 +149,15 @@ public class ClockDisplay
        minute.increment();
        if(minute.getValue() == 0){
            hour.increment();
+           if(hour.getValue() == 0){
+               dia.increment();
+               if(dia.getValue() == 0){
+                   mes.increment();
+                   if(mes.getValue() == 0){
+                       year.increment();
+                   }
+               }
+           }
        }
        asignaTime();
    }
