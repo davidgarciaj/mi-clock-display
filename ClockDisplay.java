@@ -41,7 +41,7 @@ public class ClockDisplay
         mes = new NumberDisplay(12);
         mes.setValue(11);
         //Año actual
-        year = new NumberDisplay(99);
+        year = new NumberDisplay(100);
         year.setValue(15);
         //Tiempo representado
         asignaTime();
@@ -59,8 +59,6 @@ public class ClockDisplay
         // hora actual
         hour = new NumberDisplay(24);
         hour.setValue(hora);
-        //Tiempo representado
-        asignaTime();
         //Formato de horas
         doceHoras = formato;
         //Dia actual
@@ -70,8 +68,10 @@ public class ClockDisplay
         mes = new NumberDisplay(12);
         mes.setValue(mesDado);
         //Año actual
-        year = new NumberDisplay(99);
+        year = new NumberDisplay(100);
         year.setValue(anioDado);
+        //Tiempo representado
+        asignaTime();
     }
 
     /**
@@ -86,9 +86,9 @@ public class ClockDisplay
         //Dia actual
         dia.setValue(diaDado - 1);
         //Mes actual
-        dia.setValue(mesDado - 1);
+        mes.setValue(mesDado - 1);
         //Año actual
-        dia.setValue(anioDado - 1);
+        year.setValue(anioDado);
         //Guarda fecha
         asignaTime();
    }
@@ -135,10 +135,10 @@ public class ClockDisplay
            else if((hour.getValue() > 12) && (hour.getValue() < 22)){
                hora  = "0" + hora; 
            }
-           time = hora + ":" + minute.getDisplayValue() + meridium + " " + (dia.getValue() + 1) + "-" + (mes.getValue()+ 1) + "-" + (year.getValue() + 1); 
+           time = hora + ":" + minute.getDisplayValue() + meridium + " " + (dia.getValue() + 1) + "-" + (mes.getValue()+ 1) + "-" + year.getDisplayValue(); 
         }
        else{
-           time = hour.getDisplayValue() + ":" + minute.getDisplayValue() + " " + (dia.getValue()+ 1) + "-" + (mes.getValue()+ 1) + "-" + (year.getValue() + 1);
+           time = hour.getDisplayValue() + ":" + minute.getDisplayValue() + " " + (dia.getValue()+ 1) + "-" + (mes.getValue()+ 1) + "-" + year.getDisplayValue();
        }
    }
    
