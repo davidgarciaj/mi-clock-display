@@ -65,6 +65,18 @@ public class ClockDisplay
    public String getTime()
    {
        if(doceHoras){
+         formatoDoce();  
+       }
+       else{
+           time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
+       }
+       return time;
+        
+   }
+   /**
+    * Transforma el formato de 24 horas a 12 horas.
+    */
+   public void formatoDoce(){
            String meridium = " AM";
            String hora = hour.getDisplayValue();
            if(hour.getValue() > 11){
@@ -85,19 +97,19 @@ public class ClockDisplay
            else if((hour.getValue() > 12) && (hour.getValue() < 22)){
                hora  = "0" + hora; 
            }
-           String tiempo = hora + ":" + minute.getDisplayValue() + meridium;
-           return tiempo;
-        }
-        else{
-            return time;
-        }
+           time = hora + ":" + minute.getDisplayValue() + meridium;
    }
-   
    /**
     * Cambia el formato horario del relos
     */
    public void formatChange(){
        doceHoras  = !doceHoras;
+       if(doceHoras){
+         formatoDoce();  
+       }
+       else{
+           time = hour.getDisplayValue() + ":" + minute.getDisplayValue();
+       }
    }
    
    /**
